@@ -1,0 +1,18 @@
+[alerts]
+# Path to alert rules
+path = "/path/to/dir"
+# Directories to exclude from search
+exclude_dir = ["pod_monitors", "unit_tests"]
+# File names to exclude from search
+exclude_files = ["prometheus-rules-developer.yaml"]
+# Severity level of alerts to look for tests against
+severity = ["critical", "warning"]
+
+[test]
+# Path to the test files
+path = "/path/to/dir"
+exclude_dir = []
+
+[script]
+# Will cause the script to exit with value of one when a untested alert has a severity level in the fail_levels
+fail_levels = ["critical"]
