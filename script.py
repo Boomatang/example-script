@@ -21,7 +21,7 @@ for root, dirs, files in os.walk(alerts_path):
         if name in settings['alerts']['exclude_files']:
             continue
         entry = Path(root, name)
-        if entry.suffix.lower() != ".yaml":
+        if entry.suffix.lower() not in [".yaml", ".yml"]:
             continue
 
         with open(entry, "r") as f:
@@ -62,7 +62,7 @@ for root, dirs, files in os.walk(tests_path):
                 for rule in test["alert_rule_test"]:
                     for exp_alert in rule['exp_alerts']:
                         if 'exp_labels' in exp_alert and 'alertname' in exp_alert['exp_labels']:
-                            for key, item in alerts.items():
+                            for _, item in alerts.items():
                                 if exp_alert['exp_labels']['severity'].lower() in item['severity'] \
                                         and exp_alert['exp_labels']['alertname'] in item['severity'][exp_alert['exp_labels']['severity'].lower()]:
                                     item['severity'][exp_alert['exp_labels']['severity'].lower()].remove(exp_alert['exp_labels']['alertname'])
